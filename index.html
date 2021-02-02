@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+    <head>
+        <meta charset="UTF-8">
+        <title>ShakesProject</title>
+        <link rel="stylesheet" href="css/start.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="start">
+            <div class="welcome-banner">
+                <div class="left-start-wing"></div>
+                <h1 class="welcome">Witaj w ShakesProject!</h1>
+                <div class="right-start-wing"></div>
+            </div>
+            <div class="main">
+                <div class="description">
+                    <h2>Postać: <span class="hero-name">Mag</span></h2>
+                    <div class="desc">
+                        <p>
+                            Od początku istnienia ludzkości na świecie są czarodzieje. Na przełomie wieków coraz bardziej zgłębiali sztukę magii,
+                            dochodząc do perfekcji w posługiwaniu się swoim niezwykłym darem - magią.
+                            A co to jest magia? Magia to "siła", dzięki której osoby, zdolne do zapanowania nad nią, mogą tworzyć rzeczy,
+                            uważane przez mugoli za niemożliwe. Wyróżniamy dwa rodzaje magii. Każda z nich ma inną charakterystykę i inaczej się rozwijała na przestrzeni wieków.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img id="hero-img" src="grafika/mage.jpg">
+                </div>
+                <dic class="stats">
+                    <h2>Statystyki Postaci</h2>
+                    <div class="desc">
+                        <span id="exp-text1">Siła: 90</span><div class="exp-bar"><div class="exp1"></div></div>
+                        <span id="exp-text2">Zdrowie: 20</span><div class="exp-bar"><div class="exp2"></div></div>
+                        <span id="exp-text3">Zręczność: 30</span><div class="exp-bar"><div class="exp3"></div></div>
+                        <span id="exp-text4">Mana: 75</span><div class="exp-bar"><div class="exp4"></div></div>
+                    </div>
+                </dic>
+            </div>
+            <div class="load">
+                <button class="left-hero-btn" id="left-hero">W lewo</button>
+                Wybierz nazwę dla swojej postaci<input type="text" id="nick"><span id="error"></span>
+                <div class="btn-start" name="btn1">Zacznij grę!</div>
+                <button class="right-hero-btn" id="right-hero">W prawo</button>
+            </div>
+        </div>
+        <div class="main-game">
+            <div class="room-name">
+                <h1 class="room-text"></h1>
+            </div>
+            <div class="game-main-div">
+                <div class="player-info">
+                    <p class="player-nick"></p>
+                    <p class="player-class"></p>
+                    <p class="player-lvl"></p>
+                </div>
+                <div class="buildings">
+                    <div class="btn1-buildings">
+                        <img class="choosen-hero-img" alt="hero-img" id="hero-menu-img">
+                        <div class="hero-upgrade">
+                            <div class="upgrade-holder">
+                                <span id="exp-menu-text1"></span><div class="btn-bar-holder"><div class="exp-menu-bar"><div class="exp-menu-1"></div></div><div class="upgrade-btn"><img src="grafika/plus.png" id="strength" class="upgrade-img"></div></div>
+                                <span id="exp-menu-text2"></span><div class="btn-bar-holder"><div class="exp-menu-bar"><div class="exp-menu-2"></div></div><div class="upgrade-btn"><img src="grafika/plus.png" id="health" class="upgrade-img"></div></div>
+                                <span id="exp-menu-text3"></span><div class="btn-bar-holder"><div class="exp-menu-bar"><div class="exp-menu-3"></div></div><div class="upgrade-btn"><img src="grafika/plus.png" id="skill" class="upgrade-img"></div></div>
+                                <span id="exp-menu-text4"></span><div class="btn-bar-holder"><div class="exp-menu-bar"><div class="exp-menu-4"></div></div><div class="upgrade-btn"><img src="grafika/plus.png" id="mana" class="upgrade-img"></div></div>
+                            </div>
+                            <h2 class="upgrade-points"></h2>
+                        </div>
+                    </div>
+                    <div class="btn2-buildings">
+                        <div class="offer1"></div>
+                        <div class="offer2"></div>
+                        <div class="offer3"></div>
+                    </div>
+                    <div class="btn3-buildings">
+                        <div class="price-titles">
+                            <h4>Cena: 25 złota</h4>
+                            <h4>Cena: 25 złota</h4>
+                            <h4>Cena: 25 złota</h4>
+                        </div>
+                        <div class="offers">
+                            <div class="offer4">
+                                <div class="offer-title">Tymczasowe ulepszenie siły</div>
+                                <div class="offer-text">Dodaje +15 siły na stałe</div>
+                            </div>
+                            <div class="offer5">
+                                <div class="offer-title">Tymczasowe ulepszenie siły</div>
+                                <div class="offer-text">Dodaje +15 siły na stałe</div>
+                            </div>
+                            <div class="offer6">
+                                <div class="offer-title">Tymczasowe ulepszenie siły</div>
+                                <div class="offer-text">Dodaje +15 siły na stałe</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn4-buildings">
+                        <div class="price-titles">
+                            <h4>Cena: 100 złota</h4>
+                            <h4>Cena: 100 złota</h4>
+                            <h4>Cena: 100 złota</h4>
+                        </div>
+                        <div class="offers">
+                            <div class="offer7">
+                                <div class="offer-title">Trwałe ulepszenie siły</div>
+                                <div class="offer-text">Dodaje +20 siły na stałe</div>
+                            </div>
+                            <div class="offer8">
+                                <div class="offer-title">Trwałe ulepszenie zdrowia</div>
+                                <div class="offer-text">Dodaje +20 zdrowia na stałe</div>
+                            </div>
+                            <div class="offer9">
+                                <div class="offer-title">Trwałe ulepszenie many</div>
+                                <div class="offer-text">Dodaje +20 many na stałe</div>
+                            </div>
+                        </div>
+                        <div class="buy-buttons">
+                            <div id="buy-const-bonus1" class="buy-btn">KUP</div>
+                            <div id="buy-const-bonus2" class="buy-btn">KUP</div>
+                            <div id="buy-const-bonus3" class="buy-btn">KUP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-block" id="btn1" name="btn1">Bohater</div>
+                <div class="menu-block" id="btn2" name="btn2">Misje</div>
+                <div class="menu-block" id="btn3" name="btn3">Bonusy</div>
+                <div class="menu-block" id="btn4" name="btn4">Sklep</div>
+            </div>
+        </div>
+    </body>
+    <script src="javascript/class.js"></script>
+    <script src="javascript/variables.js"></script>
+    <script src="javascript/script.js"></script>
+    <script src="javascript/listeners.js"></script>
+</html>
