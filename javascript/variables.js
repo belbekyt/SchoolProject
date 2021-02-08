@@ -24,6 +24,7 @@ const mainH1 = document.querySelector(".room-text");
 
 const playerClass = document.querySelector(".player-class");
 const playerLevelBox = document.querySelector(".player-lvl");
+const playerMoneyBox = document.querySelector(".player-money");
 
 const menuBtn1 = document.querySelector("#btn1");
 const menuBtn2 = document.querySelector("#btn2");
@@ -53,6 +54,17 @@ const upgradeBtn2 = document.querySelector("#health");
 const upgradeBtn3 = document.querySelector("#skill");
 const upgradeBtn4 = document.querySelector("#mana");
 
-const buyBonus1Const = document.querySelector("#buy-const-bonus1");
-const buyBonus2Const = document.querySelector("#buy-const-bonus2");
-const buyBonus3Const = document.querySelector("#buy-const-bonus3");
+const buyBonus1Const = document.querySelector(".buy-btn1");
+const buyBonus2Const = document.querySelector(".buy-btn2");
+const buyBonus3Const = document.querySelector(".buy-btn3");
+const buyBonus1Temp = document.querySelector(".buy-btn4");
+const buyBonus2Temp = document.querySelector(".buy-btn5");
+const buyBonus3Temp = document.querySelector(".buy-btn6");
+
+let temp1 = 0;
+let temp2 = 0;
+let temp3 = 0;
+
+let bonus1const = false;
+let bonus2const = false;
+let bonus3const = false;

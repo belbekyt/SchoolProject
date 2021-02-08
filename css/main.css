@@ -126,6 +126,7 @@
 
 .upgrade-img{
     width: 100%;
+    cursor: pointer;
 }
 
 .offer1, .offer2, .offer3, .offer4, .offer5, .offer6, .offer7, .offer8, .offer9{
@@ -138,6 +139,18 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.offer4{
+    background-image: url(../grafika/tempstrengthpotion.jpg);
+}
+
+.offer5{
+    background-image: url(../grafika/temphealthpotion.jpg);
+}
+
+.offer6{
+    background-image: url(../grafika/tempmanapotion.jpg);
 }
 
 .offer7{
@@ -180,12 +193,29 @@
 .buy-buttons{height: 13%;}
 .offers{height: 74%;}
 
-.buy-btn{
+.buy-btn1, .buy-btn2, .buy-btn3, .buy-btn4, .buy-btn5, .buy-btn6{
     width: 130px;
     height: 35px;
     text-align: center;
     line-height: 35px;
     background-color: orangered;
     border-radius: 8px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.cant-buy, .bought{
+    width: 130px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    background-color: rgb(38, 38, 38);
+    color:wheat;
+    border: 2px solid orangered;
+    border-radius: 8px;
+}
+
+.cant-buy{
+    background-color: orangered;
     border: 2px solid black;
 }

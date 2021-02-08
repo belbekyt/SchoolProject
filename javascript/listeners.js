@@ -16,3 +16,6 @@ upgradeBtn4.addEventListener("click", upgradeFunc);
 buyBonus1Const.addEventListener("click", constBonusBuy);
 buyBonus2Const.addEventListener("click", constBonusBuy);
 buyBonus3Const.addEventListener("click", constBonusBuy);
+buyBonus1Temp.addEventListener("click", tempBonusBuy);
+buyBonus2Temp.addEventListener("click", tempBonusBuy);
+buyBonus3Temp.addEventListener("click", tempBonusBuy);

@@ -120,6 +120,7 @@ input{
     max-height: 70%;
 }
 .exp-bar, .exp-menu-bar{
+    overflow: hidden;
     margin:10px 0;
     background-color:rgb(50, 51, 48);
     width:100%;

@@ -52,15 +52,15 @@ let start = function(){
     else{
         switch(heroNumber){
             case 1:
-                player = new PlayerConstructor("Mag", 90, 20, 30, 75, 1, 0, "mage.jpg", 0, 0, 0, 0, 0, 0, 0);
+                player = new PlayerConstructor("Mag", 90, 20, 30, 75, 1, 0, 300, "mage.jpg", 2, 0, 0, 0, 0, 0, 0);
                 initiateGame(player);
                 break;
             case 2:
-                player = new PlayerConstructor("Łucznik", 80, 20, 70, 10, 1, 0, "archer.jpg", 0, 0, 0, 0, 0, 0, 0);
+                player = new PlayerConstructor("Łucznik", 80, 20, 70, 10, 1, 0, 0, "archer.jpg", 0, 0, 0, 0, 0, 0, 0);
                 initiateGame(player);
                 break;
             case 3:
-                player = new PlayerConstructor("Rycerz", 65, 80, 30, 30, 1, 0, "knight.jpg", 0, 0, 0, 0, 0, 0, 0);
+                player = new PlayerConstructor("Rycerz", 65, 80, 30, 30, 1, 0, 0, "knight.jpg", 0, 0, 0, 0, 0, 0, 0);
                 initiateGame(player);
         }
         const playerNick = document.querySelector(".player-nick");
@@ -72,9 +72,7 @@ let start = function(){
 
 let menuChangeBtn = function(){
     let menuID = this.getAttribute("name");
-    console.log(menuID);
     let menuclass = this.className;
-    console.log(menuclass);
     
     switch(menuID){
         case "btn1":
@@ -103,6 +101,7 @@ let initiateGame = function(player){
     playerClassTest = "Klasa: " + player.name;
     playerClass.innerHTML = playerClassTest;
     playerLevelBox.innerHTML = "Poziom: " + player.level + " | exp: " + player.exp + "/" + player.level*100;
+    playerMoneyBox.innerHTML = "Złoto: " + player.money;
 }
 
 let checkLevel = function(){
@@ -121,16 +120,15 @@ let caseOneMenu = function(player){
     btn4Buildings.style.display = "none";
     btn1Buildings.style.display = "flex";
     const heroMenuImg = document.querySelector("#hero-menu-img");
-    console.log(player.photo);
     heroMenuImg.setAttribute("src", "grafika/"+player.photo);
     expBar1.style.width = player.strenght+"%";
-    expBarText1.innerHTML = "Siła: " + player.strenght + " + " + player.bonus1 + " + " + player.tempbonus1;
+    expBarText1.innerHTML = "Siła: " + player.strenght;
     expBar2.style.width = player.health+"%";
-    expBarText2.innerHTML = "Zdrowie: " + player.health  + " + " + player.bonus2 + " + " + player.tempbonus2;
+    expBarText2.innerHTML = "Zdrowie: " + player.health;
     expBar3.style.width = player.skill+"%";
     expBarText3.innerHTML = "Umiejętności: " + player.skill;
     expBar4.style.width = player.mana+"%";
-    expBarText4.innerHTML = "Mana: " + player.mana  + " + " + player.bonus3 + " + " + player.tempbonus3;
+    expBarText4.innerHTML = "Mana: " + player.mana;
     upgradePointsTxt.innerHTML = "Dostępne punkty ulepszeń: " + player.upgradePoints;
 }
 
@@ -146,13 +144,31 @@ let caseThreeMenu = function(){
     btn2Buildings.style.display = "none";
     btn4Buildings.style.display = "none";
     btn3Buildings.style.display = "flex";
+    checkTempBonuses();
 }
 
 let caseFourMenu = function(){
+    if(player.money<100){
+        buyBonus1Const.classList.add("cant-buy");
+        buyBonus2Const.classList.add("cant-buy");
+        buyBonus3Const.classList.add("cant-buy");
+        buyBonus1Const.innerHTML="BRAK ZŁOTA";
+        buyBonus2Const.innerHTML="BRAK ZŁOTA";
+        buyBonus3Const.innerHTML="BRAK ZŁOTA";
+    }
+    else if(player.money >= 100){
+        buyBonus1Const.classList.remove("cant-buy");
+        buyBonus2Const.classList.remove("cant-buy");
+        buyBonus3Const.classList.remove("cant-buy");
+        buyBonus1Const.innerHTML="KUP";
+        buyBonus2Const.innerHTML="KUP";
+        buyBonus3Const.innerHTML="KUP";
+    }
     btn1Buildings.style.display = "none";
     btn2Buildings.style.display = "none";
     btn3Buildings.style.display = "none";
     btn4Buildings.style.display = "flex";
+    checkBonuses();
 }
 
 
@@ -164,7 +180,7 @@ let upgradeFunc = function(){
         let skillId = this.getAttribute("id");
         switch(skillId){
             case "strength":
-                if(player.strenght==100){
+                if(player.strenght>=100){
                     break;
                 }
                 else{
@@ -174,7 +190,7 @@ let upgradeFunc = function(){
                     break;
                 }
             case "health":
-                if(player.health==100){
+                if(player.health>=100){
                     break;
                 }
                 else{
@@ -184,7 +200,7 @@ let upgradeFunc = function(){
                     break;
                 }
             case "skill":
-                if(player.skill==100){
+                if(player.skill>=100){
                     break;
                 }
                 else{
@@ -194,7 +210,7 @@ let upgradeFunc = function(){
                     break;
                 }                
             case "mana":
-                if(player.mana==100){
+                if(player.mana>=100){
                     break;
                 }
                 else{
@@ -207,10 +223,133 @@ let upgradeFunc = function(){
     }
 }
 
+let checkBonuses = function(){
+    if(bonus1const){
+        buyBonus1Const.classList.remove("buy-btn1");
+        buyBonus1Const.classList.remove("cant-buy");
+        buyBonus1Const.classList.add("bought");
+        buyBonus1Const.innerHTML="KUPIONO";
+    }
+    
+    if(bonus2const){
+        buyBonus2Const.classList.remove("buy-btn2");
+        buyBonus2Const.classList.remove("cant-buy");
+        buyBonus2Const.classList.add("bought");
+        buyBonus2Const.innerHTML="KUPIONO";
+    }
+    
+    if(bonus3const){
+        buyBonus3Const.classList.remove("buy-btn3");
+        buyBonus3Const.classList.remove("cant-buy");
+        buyBonus3Const.classList.add("bought");
+        buyBonus3Const.innerHTML="KUPIONO";
+    }
+}
+
+let checkTempBonuses = function(){
+    if(temp1>0){
+        buyBonus1Temp.classList.remove("buy-btn4");
+        buyBonus1Temp.classList.remove("cant-buy");
+        buyBonus1Temp.classList.add("bought");
+        buyBonus1Temp.innerHTML="KUPIONO";
+    }
+    else{
+        buyBonus1Temp.classList.add("buy-btn4");
+        buyBonus1Temp.classList.remove("bought");
+        buyBonus2Temp.innerHTML="KUP";
+    }
+    
+    if(temp2>0){
+        buyBonus2Temp.classList.remove("buy-btn5");
+        buyBonus2Temp.classList.remove("cant-buy");
+        buyBonus2Temp.classList.add("bought");
+        buyBonus2Temp.innerHTML="KUPIONO";
+    }
+    else{
+        buyBonus2Temp.classList.add("buy-btn5");
+        buyBonus2Temp.classList.remove("bought");
+        buyBonus2Temp.innerHTML="KUP";
+    }
+    
+    if(temp3>0){
+        buyBonus3Temp.classList.remove("buy-btn6");
+        buyBonus3Temp.classList.remove("cant-buy");
+        buyBonus3Temp.classList.add("bought");
+        buyBonus3Temp.innerHTML="KUPIONO";
+    }
+    else{
+        buyBonus3Temp.classList.add("buy-btn6");
+        buyBonus3Temp.classList.remove("bought");
+        buyBonus3Temp.innerHTML="KUP";
+    }
+}
+
 let constBonusBuy = function(){
     let skillId = this.getAttribute("id");
-    console.log(skillId);
-    switch(skillId){
-        
+    if(player.money>=100){
+        switch(skillId){
+            case 'buy-const-bonus3':
+                if(bonus3const){}
+                else{
+                    player.mana += 20;
+                    bonus3const = true;
+                    player.money-=100;
+                }
+                break;
+            case 'buy-const-bonus2':
+                if(bonus2const){}
+                else{
+                    player.health += 20;
+                    bonus2const = true;
+                    player.money-=100;
+                }
+                break;
+            case 'buy-const-bonus1':
+                if(bonus1const){}
+                else{
+                    player.strenght += 20;
+                    bonus1const = true;
+                    player.money-=100;
+                }
+                break;
+        }
     }
+    caseFourMenu(player);
+    initiateGame(player);
+    checkBonuses();
+}
+
+let tempBonusBuy = function(){
+    let skillId = this.getAttribute("id");
+    if(player.money>=25){
+        switch(skillId){
+            case 'buy-temp-bonus3':
+                if(temp3>0){}
+                else{
+                    player.mana += 15;
+                    temp3 = 5;
+                    player.money-=25;
+                }
+                break;
+            case 'buy-temp-bonus2':
+                if(temp2>0){}
+                else{
+                    player.health += 15;
+                    temp2 = 5;
+                    player.money-=25;
+                }
+                break;
+            case 'buy-temp-bonus1':
+                if(temp1>0){}
+                else{
+                    player.strenght += 15;
+                    temp1 = 5;
+                    player.money-=25;
+                }
+                break;
+        }
+    }
+    caseThreeMenu(player);
+    initiateGame(player);
+    checkTempBonuses(player);
 }
