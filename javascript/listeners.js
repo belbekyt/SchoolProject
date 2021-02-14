@@ -19,3 +19,7 @@ buyBonus3Const.addEventListener("click", constBonusBuy);
 buyBonus1Temp.addEventListener("click", tempBonusBuy);
 buyBonus2Temp.addEventListener("click", tempBonusBuy);
 buyBonus3Temp.addEventListener("click", tempBonusBuy);
+
+battleBtn.addEventListener("click", function(){
+    animationBeforeFight(player);
+});

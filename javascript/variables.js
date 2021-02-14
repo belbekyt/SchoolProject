@@ -68,3 +68,13 @@ let temp3 = 0;
 let bonus1const = false;
 let bonus2const = false;
 let bonus3const = false;
+
+const battleBtn = document.querySelector("#battleBtn");
+
+const card2Title = document.querySelector(".card2-title");
+
+const card1Img = document.querySelector(".card1-img-holder");
+const card2Img = document.querySelector(".card2-img-holder");
+
+const card1Health = document.querySelector(".card1-health-in");
+const card2Health = document.querySelector(".card2-health-in");

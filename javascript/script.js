@@ -64,7 +64,7 @@ let start = function(){
                 initiateGame(player);
         }
         const playerNick = document.querySelector(".player-nick");
-        playerNick.innerHTML = 'Witaj ' + nick;
+        playerNick.innerHTML = 'Witaj ' + nick + '!';
         document.querySelector(".start").style.display = "none";
         document.querySelector(".main-game").style.display = "inline";
     }
@@ -352,4 +352,130 @@ let tempBonusBuy = function(){
     caseThreeMenu(player);
     initiateGame(player);
     checkTempBonuses(player);
+}
+
+let animationBeforeFight = function(player){
+    $(".battle-background").animate({
+        opacity:'100',
+        top:'0'
+    }, 1100) 
+    $(".battle-sword1").animate({
+        left:'50%'
+    },2000)
+    $(".battle-sword2").animate({
+        left:'50%'
+    },2000)
+    $(".battle-title").animate({
+        top:'75%'
+    },2200)
+
+    initiateFight(player);
+}
+
+let initiateFight = function(player){
+    let skillHealth = Math.floor(Math.random() * 81 + 20);
+    let skillSkill = Math.floor(Math.random() * 86 + 15);
+    let skillStrength = Math.floor(Math.random() * 86 + 15);
+    let skillMana = Math.floor(Math.random() * 86 + 15);
+    let exp = 0;
+    let money = 0;
+    let sum = skillHealth+skillSkill+skillStrength+skillMana;
+    let damagePlayer = player.skill+player.mana+player.strenght;
+    let damageRival = sum-skillHealth;
+
+    let bgNumber = Math.floor(Math.random() * 3 + 1);
+    let rivalPhoto = Math.floor(Math.random() * 5 + 1);
+
+    if(rivalPhoto == 5){
+        card2Title.innerHTML = "Wolverine";
+    }
+    else{
+        card2Title.innerHTML = "Rywal";
+    }
+
+    if(sum<100){
+        exp = 10;
+        money = 4;
+    }
+    else if(sum<200){
+        exp = 16;
+        money = 8;
+    }
+    else if(sum<300){
+        exp = 25;
+        money = 10;
+    }
+    else{
+        exp = 50;
+        money = 16;
+    }
+
+    document.querySelector(".battle-arena").style.backgroundImage = "url('../grafika/arena"+bgNumber+".jpg')";
+
+    card2Img.style.backgroundImage = "url('../grafika/"+rivalPhoto+".jpg')";
+    card1Img.style.backgroundImage = "url('../grafika/"+player.photo+"')";
+
+    const maxHealth1 = player.health;
+    const maxHealth2 = skillHealth;
+
+    let rival = new HeroConstructor("", skillStrength, skillHealth, skillSkill, skillMana);
+
+    card1Health.innerHTML = player.health+"/"+maxHealth1;
+    card2Health.innerHTML = rival.health+"/"+maxHealth2;
+
+    $(".battle-background").animate({
+        opacity:'100'
+    },3500)
+
+    $(".battle-arena").animate({
+        top:'100%'
+    },1000)
+
+    $(".battle-arena").animate({
+        top:'0'
+    },0)
+
+
+    endAnimation();
+    fight(player, exp, money, damagePlayer, damageRival);
+}
+
+let endAnimation = function(){
+    $(".battle-background").animate({
+        opacity:'0',
+        top:'-100%'
+    }, 1100) 
+    $(".battle-sword1").animate({
+        left:'-10%'
+    },2000)
+    $(".battle-sword2").animate({
+        left:'110%'
+    },2000)
+    $(".battle-title").animate({
+        top:'100%'
+    },2200)
+}
+
+let fight = function(player, exp, money, damagePlayer, damageRival){
+    $(".battle-background").animate({
+        opacity:'0',
+        top:'-100%'
+    }, 10000) 
+
+    setTimeout(function(){
+        playerTurn(player, exp, money, damagePlayer, damageRival);
+    }, 7000)
+}
+
+let playerTurn = function(){
+    if(player.health<=0){
+        
+    }
+
+    let playerDamageBonus = Math.floor(Math.random() * 15 + 1);
+    let dealtDamageByPlayer = damagePlayer + playerDamageBonus;
+}
+
+let rivalTurn = function(){
+    let rivalDamageBonus = Math.floor(Math.random() * 15 + 1);
 }

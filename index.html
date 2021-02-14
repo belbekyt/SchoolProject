@@ -70,9 +70,13 @@
                         </div>
                     </div>
                     <div class="btn2-buildings">
-                        <div class="offer1"></div>
-                        <div class="offer2"></div>
-                        <div class="offer3"></div>
+                        <div class="main-battle">
+                            <p>Witaj, znajdujesz się na arenie walk, klikasz ten guzik na własną odpowiedzialność!<br>
+                            Możesz tutaj spotkać najróżniejszych wrogów, a za ich pokonywanie dostaniesz pieniądze oraz doświadczenie, posłużą ci one w dalszym rozwoju.</p>
+                            <div class="battle-btn-holder">
+                                <div id="battleBtn">WALKA</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="btn3-buildings">
                         <div class="price-titles">
@@ -135,7 +139,33 @@
                 <div class="menu-block" id="btn4" name="btn4">Sklep</div>
             </div>
         </div>
+        <div class="battle-background" id="battle-bg"></div>
+        <div class="battle-sword1"><img src="grafika/sword1.png" alt="sword1"></div>
+        <div class="battle-sword2"></div>
+        <p class="battle-title">Walka!</p>
+        <div class="battle-arena">
+            <div class="player-card">
+                <div class="card1-title">Gracz</div>
+                <div class="card1-img-holder"></div>
+                <div class="card1-health">
+                    <div class="card1-health-in">100/100</div>
+                </div>
+            </div>
+            <div class="spacing-div">VS</div>
+            <div class="rival-card">
+                <div class="card2-title">Rywal</div>
+                <div class="card2-img-holder"></div>
+                <div class="card2-health">
+                    <div class="card2-health-in">100/100</div>
+                </div>
+            </div>
+        </div>
+        <div class="fight-end-screen">
+            <p>PORAŻKA!</p>
+            <p class="earnings">Exp: +0 | Złoto: +0</p>
+        </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="javascript/class.js"></script>
     <script src="javascript/variables.js"></script>
     <script src="javascript/script.js"></script>
