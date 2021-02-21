@@ -74,7 +74,7 @@
                             <p>Witaj, znajdujesz się na arenie walk, klikasz ten guzik na własną odpowiedzialność!<br>
                             Możesz tutaj spotkać najróżniejszych wrogów, a za ich pokonywanie dostaniesz pieniądze oraz doświadczenie, posłużą ci one w dalszym rozwoju.</p>
                             <div class="battle-btn-holder">
-                                <div id="battleBtn">WALKA</div>
+                                <div id="battle-btn">WALKA</div>
                             </div>
                         </div>
                     </div>
@@ -91,11 +91,11 @@
                             </div>
                             <div class="offer5">
                                 <div class="offer-title">Tymczasowe ulepszenie zdrowia</div>
-                                <div class="offer-text">Dodaje +15 siły na 5 walk</div>
+                                <div class="offer-text">Dodaje +15 zdrowia na 5 walk</div>
                             </div>
                             <div class="offer6">
                                 <div class="offer-title">Tymczasowe ulepszenie many</div>
-                                <div class="offer-text">Dodaje +15 siły na 5 walk</div>
+                                <div class="offer-text">Dodaje +15 many na 5 walk</div>
                             </div>
                         </div>
                         <div class="buy-buttons">
@@ -148,7 +148,8 @@
                 <div class="card1-title">Gracz</div>
                 <div class="card1-img-holder"></div>
                 <div class="card1-health">
-                    <div class="card1-health-in">100/100</div>
+                    <p class="health2-stat">100/100</p>
+                    <div class="card1-health-in"></div>
                 </div>
             </div>
             <div class="spacing-div">VS</div>
@@ -156,12 +157,13 @@
                 <div class="card2-title">Rywal</div>
                 <div class="card2-img-holder"></div>
                 <div class="card2-health">
-                    <div class="card2-health-in">100/100</div>
+                    <p class="health1-stat">100/100</p>
+                    <div class="card2-health-in"></div>
                 </div>
             </div>
         </div>
         <div class="fight-end-screen">
-            <p>PORAŻKA!</p>
+            <p id="winLose">PORAŻKA!</p>
             <p class="earnings">Exp: +0 | Złoto: +0</p>
         </div>
     </body>

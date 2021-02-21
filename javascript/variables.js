@@ -69,12 +69,18 @@ let bonus1const = false;
 let bonus2const = false;
 let bonus3const = false;
 
-const battleBtn = document.querySelector("#battleBtn");
+const battleBtn = document.querySelector("#battle-btn");
 
 const card2Title = document.querySelector(".card2-title");
 
 const card1Img = document.querySelector(".card1-img-holder");
 const card2Img = document.querySelector(".card2-img-holder");
 
-const card1Health = document.querySelector(".card1-health-in");
-const card2Health = document.querySelector(".card2-health-in");
+const card1Health = document.querySelector(".health1-stat");
+const card2Health = document.querySelector(".health2-stat");
+
+const winOrLose = document.querySelector("#winLose");
+const earnings = document.querySelector(".earnings");
+const endScreen = document.querySelector(".fight-end-screen");
+
+let lastFight = false;

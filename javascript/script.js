@@ -52,15 +52,15 @@ let start = function(){
     else{
         switch(heroNumber){
             case 1:
-                player = new PlayerConstructor("Mag", 90, 20, 30, 75, 1, 0, 300, "mage.jpg", 2, 0, 0, 0, 0, 0, 0);
+                player = new PlayerConstructor("Mag", 90, 20, 30, 75, 1, 0, 30, "mage.jpg", 0, 0, 0, 0, 0, 0, 0);
                 initiateGame(player);
                 break;
             case 2:
-                player = new PlayerConstructor("Łucznik", 80, 20, 70, 10, 1, 0, 0, "archer.jpg", 0, 0, 0, 0, 0, 0, 0);
+                player = new PlayerConstructor("Łucznik", 80, 20, 70, 10, 1, 0, 30, "archer.jpg", 0, 0, 0, 0, 0, 0, 0);
                 initiateGame(player);
                 break;
             case 3:
-                player = new PlayerConstructor("Rycerz", 65, 80, 30, 30, 1, 0, 0, "knight.jpg", 0, 0, 0, 0, 0, 0, 0);
+                player = new PlayerConstructor("Rycerz", 65, 80, 30, 30, 1, 0, 30, "knight.jpg", 0, 0, 0, 0, 0, 0, 0);
                 initiateGame(player);
         }
         const playerNick = document.querySelector(".player-nick");
@@ -104,12 +104,14 @@ let initiateGame = function(player){
     playerMoneyBox.innerHTML = "Złoto: " + player.money;
 }
 
-let checkLevel = function(){
+let checkLevel = function(player){
     if(player.exp > player.level*100){
-        player.level++;
         player.upgradePoints++;
         player.exp = player.exp - (player.level*100);
+        player.level++;
     }
+
+    initiateGame(player);
 }
 
 //menuBtn1
@@ -373,6 +375,7 @@ let animationBeforeFight = function(player){
 }
 
 let initiateFight = function(player){
+    lastFight = false;
     let skillHealth = Math.floor(Math.random() * 81 + 20);
     let skillSkill = Math.floor(Math.random() * 86 + 15);
     let skillStrength = Math.floor(Math.random() * 86 + 15);
@@ -402,7 +405,7 @@ let initiateFight = function(player){
         money = 8;
     }
     else if(sum<300){
-        exp = 25;
+        exp = 26;
         money = 10;
     }
     else{
@@ -420,8 +423,16 @@ let initiateFight = function(player){
 
     let rival = new HeroConstructor("", skillStrength, skillHealth, skillSkill, skillMana);
 
-    card1Health.innerHTML = player.health+"/"+maxHealth1;
-    card2Health.innerHTML = rival.health+"/"+maxHealth2;
+    card2Health.innerHTML = player.health+"/"+maxHealth1;
+    card1Health.innerHTML = rival.health+"/"+maxHealth2;
+
+    $(".card1-health-in").animate({
+        width:'100%'
+    }, 0)
+
+    $(".card2-health-in").animate({
+        width:'100%'
+    }, 0)
 
     $(".battle-background").animate({
         opacity:'100'
@@ -437,7 +448,7 @@ let initiateFight = function(player){
 
 
     endAnimation();
-    fight(player, exp, money, damagePlayer, damageRival);
+    fight(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2);
 }
 
 let endAnimation = function(){
@@ -456,26 +467,118 @@ let endAnimation = function(){
     },2200)
 }
 
-let fight = function(player, exp, money, damagePlayer, damageRival){
+let fight = function(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2){
     $(".battle-background").animate({
         opacity:'0',
         top:'-100%'
     }, 10000) 
 
     setTimeout(function(){
-        playerTurn(player, exp, money, damagePlayer, damageRival);
+        playerTurn(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2);
     }, 7000)
 }
 
-let playerTurn = function(){
-    if(player.health<=0){
-        
-    }
+let playerTurn = function(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2){
+    if(player.health <= 0){
+        earnings.innerHTML = "Exp: +" + exp/2 +" | Złoto: +" + money/2; 
+        winOrLose.innerHTML = "PORAŻKA!";
+        $(".fight-end-screen").animate({
+            top:'0'
+        }, 0)
 
-    let playerDamageBonus = Math.floor(Math.random() * 15 + 1);
-    let dealtDamageByPlayer = damagePlayer + playerDamageBonus;
+        player.exp += exp/2;
+        player.money += money/2;
+
+        setTimeout(function(){
+            closeBattle(maxHealth1);
+        }, 4000)
+
+        lastFight = true;
+    }
+    if(lastFight == true){
+
+    }
+    else{
+        let playerDamageBonus = Math.floor(Math.random() * 8 + 1);
+        let dealtDamageByPlayer = damagePlayer/10 + playerDamageBonus;
+        
+        rival.health = rival.health - dealtDamageByPlayer;
+        rival.health = Math.round(rival.health);
+
+        
+        card1Health.innerHTML = rival.health+"/"+maxHealth2;
+        let newPercentOfHealth = Math.round((rival.health/maxHealth2)*100);
+
+        $(".card2-health-in").animate({
+            width:newPercentOfHealth+'%'
+        }, 1000)
+
+        setTimeout(function(){
+            rivalTurn(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2);
+        }, 2500)
+    }
 }
 
-let rivalTurn = function(){
-    let rivalDamageBonus = Math.floor(Math.random() * 15 + 1);
+let rivalTurn = function(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2){
+    if(rival.health <= 0){
+        earnings.innerHTML = "Exp: +" + exp +" | Złoto: +" + money; 
+        winOrLose.innerHTML = "WYGRANA!";
+        $(".fight-end-screen").animate({
+            top:'0'
+        }, 0)
+
+        player.exp += exp;
+        player.money += money;
+
+        setTimeout(function(){
+            closeBattle(maxHealth1);
+        }, 4000)
+
+        lastFight = true;
+    }
+
+    if(lastFight == true){
+
+    }
+    else{
+        let rivalDamageBonus = Math.floor(Math.random() * 8 + 1);
+        let dealtDamageByRival = damageRival/10 + rivalDamageBonus;
+
+        player.health -= dealtDamageByRival;
+        player.health = Math.round(player.health);
+
+        let newPercentOfHealth = Math.round((player.health/maxHealth1)*100);
+        card2Health.innerHTML = player.health+"/"+maxHealth1;
+
+        $(".card1-health-in").animate({
+            width:newPercentOfHealth+'%'
+        }, 1000)
+
+        setTimeout(function(){
+            playerTurn(player, exp, money, damagePlayer, damageRival, rival, maxHealth1, maxHealth2);
+        }, 2500)
+    }
+}
+
+let closeBattle = function(maxHealth1){
+    temp1 -= 1;
+    temp2 -= 1;
+    temp3 -= 1;
+    player.health = maxHealth1;
+
+    if(temp1==0){player.strenght -= 15;}
+
+    if(temp2==0){player.health -= 15;}
+
+    if(temp3==0){player.mana -= 15;}
+
+    checkLevel(player);
+    caseTwoMenu();
+    $(".fight-end-screen").animate({
+        top:'-100%'
+    }, 0)
+    
+    $(".battle-arena").animate({
+        top:'100%'
+    }, 0)
 }
